@@ -19,7 +19,7 @@ public class QuestionRestController {
     @Autowired
     QuestionServices questionServices;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/question/all", method = RequestMethod.GET)
     List<Question> getQuestionList(){
         return questionServices.getQuestionList();
     }

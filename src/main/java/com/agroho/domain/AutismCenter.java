@@ -1,13 +1,16 @@
-package com.agroho.domain.pogo;
+package com.agroho.domain;
+
+import com.agroho.domain.BaseEntity;
+import com.agroho.domain.pogo.Address;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
 /**
- * Author: Rezaul - Date: 21-Nov-16.
+ * Author: rezaul || Date: 11/22/16.
  */
 @Entity
-public class AutismCenter {
+public class AutismCenter extends BaseEntity{
     private String name;
     private String email;
     private String password;

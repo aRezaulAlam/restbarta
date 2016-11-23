@@ -1,22 +1,18 @@
 package com.agroho.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import java.util.Arrays;
-
-/**
- * Created by sayemkcn on 11/9/16.
- */
 @Entity
 public class Question extends BaseEntity {
-
     private String name;
     private int questionId;
-    @Lob
+    @Column(length = 10000000)
+    @Basic(fetch = FetchType.LAZY, optional = true)
     private byte[] file;
-    private boolean result;
-    private String positiveText;
-    private String negativeText;
+    private String trueText;
+    private String falseText;
+    private boolean autismDetectionValue;
+    private boolean critical;
 
     public String getName() {
         return name;
@@ -42,39 +38,36 @@ public class Question extends BaseEntity {
         this.file = file;
     }
 
-    public boolean isResult() {
-        return result;
+    public String getTrueText() {
+        return trueText;
     }
 
-    public void setResult(boolean result) {
-        this.result = result;
+    public void setTrueText(String trueText) {
+        this.trueText = trueText;
     }
 
-    public String getPositiveText() {
-        return positiveText;
+    public String getFalseText() {
+        return falseText;
     }
 
-    public void setPositiveText(String positiveText) {
-        this.positiveText = positiveText;
+    public void setFalseText(String falseText) {
+        this.falseText = falseText;
     }
 
-    public String getNegativeText() {
-        return negativeText;
+
+    public boolean isAutismDetectionValue() {
+        return autismDetectionValue;
     }
 
-    public void setNegativeText(String negativeText) {
-        this.negativeText = negativeText;
+    public void setAutismDetectionValue(boolean autismDetectionValue) {
+        this.autismDetectionValue = autismDetectionValue;
     }
 
-    @Override
-    public String toString() {
-        return "Question{" +
-                "name='" + name + '\'' +
-                ", questionId=" + questionId +
-                ", file=" + Arrays.toString(file) +
-                ", result=" + result +
-                ", positiveText='" + positiveText + '\'' +
-                ", negativeText='" + negativeText + '\'' +
-                '}';
+    public boolean isCritical() {
+        return critical;
+    }
+
+    public void setCritical(boolean critical) {
+        this.critical = critical;
     }
 }

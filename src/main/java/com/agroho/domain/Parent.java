@@ -1,30 +1,70 @@
 package com.agroho.domain;
 
-import com.agroho.domain.pogo.AutismCenter;
+import com.agroho.domain.pogo.Address;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 /**
- * Author: Rezaul - Date: 21-Nov-16.
+ * Author: rezaul || Date: 11/22/16.
  */
-public class Parent extends User {
+@Entity
+public class Parent extends BaseEntity {
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Child> childList;
-    @OneToOne
-    private AutismCenter autismCenter;
+    private String name;
 
-    public List<Child> getChildList() {
-        return childList;
+    @Embedded
+    private Address address;
+
+    private String email;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "parent")
+    private List<Child> children;
+
+    private String phoneNumber;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setChildList(List<Child> childList) {
-        this.childList = childList;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    /*
+        @ManyToOne
+        @JoinColumn(name = "autism_center_id")
+        private AutismCenter autismCenter;*/
+public String getName() {
+    return name;
+}
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Child> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Child> children) {
+        this.children = children;
+    }
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }/*
 
     public AutismCenter getAutismCenter() {
         return autismCenter;
@@ -32,5 +72,5 @@ public class Parent extends User {
 
     public void setAutismCenter(AutismCenter autismCenter) {
         this.autismCenter = autismCenter;
-    }
+    }*/
 }

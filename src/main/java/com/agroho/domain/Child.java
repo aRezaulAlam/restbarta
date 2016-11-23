@@ -1,26 +1,30 @@
 package com.agroho.domain;
 
-/**
- * Author: Rezaul - Date: 21-Nov-16.
- */
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+/**
+ * Author: rezaul || Date: 11/22/16.
+ */
 
 @Entity
-public class Child extends BaseEntity {
+public class Child extends BaseEntity{
 
     private String name;
     private float age;
     private Date birthDate;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Question> questionList;
+    private List<ChildResponseQuestion> childResponseQuestions;
+
     @ManyToOne
+    @JoinColumn(name = "PARENT_ID")
     private Parent parent;
     private boolean appResult;
     private String doctorNote;
     private boolean doctorResult;
-
 
     public String getName() {
         return name;
@@ -46,12 +50,36 @@ public class Child extends BaseEntity {
         this.birthDate = birthDate;
     }
 
-    public List<Question> getQuestionList() {
-        return questionList;
+    public List<ChildResponseQuestion> getChildResponseQuestions() {
+        return childResponseQuestions;
     }
 
-    public void setQuestionList(List<Question> questionList) {
-        this.questionList = questionList;
+    public void setChildResponseQuestions(List<ChildResponseQuestion> childResponseQuestions) {
+        this.childResponseQuestions = childResponseQuestions;
+    }
+
+    /* public List<Question> getQuestionList() {
+            return questionList;
+        }
+
+        public void setQuestionList(List<Question> questionList) {
+            this.questionList = questionList;
+        }
+    */
+    /*  public List<Question> getQuestionList() {
+                return questionList;
+            }
+
+            public void setQuestionList(List<Question> questionList) {
+                this.questionList = questionList;
+            }
+        */
+    public Parent getParent() {
+        return parent;
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 
     public boolean isAppResult() {
@@ -76,26 +104,5 @@ public class Child extends BaseEntity {
 
     public void setDoctorResult(boolean doctorResult) {
         this.doctorResult = doctorResult;
-    }
-
-    public Parent getParent() {
-        return parent;
-    }
-
-    public void setParent(Parent parent) {
-        this.parent = parent;
-    }
-
-    @Override
-    public String toString() {
-        return "Child{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", birthDate=" + birthDate +
-                ", questionList=" + questionList +
-                ", appResult=" + appResult +
-                ", doctorNote='" + doctorNote + '\'' +
-                ", doctorResult=" + doctorResult +
-                '}';
     }
 }

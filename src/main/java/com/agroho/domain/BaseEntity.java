@@ -1,6 +1,7 @@
 package com.agroho.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @MappedSuperclass
