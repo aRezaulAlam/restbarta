@@ -16,5 +16,4 @@ public interface ChildService {
 
     List<Child> getAllChildResult();
 
-    List<Child> getAllChildResultByParentId(Parent parent);
 }

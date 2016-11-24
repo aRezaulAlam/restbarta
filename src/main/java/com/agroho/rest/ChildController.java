@@ -8,10 +8,9 @@ import com.agroho.services.ChildService;
 import com.agroho.services.ParentService;
 import com.agroho.services.QuestionServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Author: rezaul || Date: 11/22/16.
@@ -31,6 +30,13 @@ public class ChildController {
     @Autowired
     QuestionServices questionServices;
 
+    @RequestMapping(value = "/api/parent/{parentId}", method = RequestMethod.GET)
+    List<Child> getChildResultByParentId(@PathVariable("parentId") Long parentId){
+
+        return parentService.getAllChildResultByParentId(parentId);
+
+    }
+
     @RequestMapping(value="/api/parent", method = RequestMethod.POST)
     public void addParent(@RequestBody Parent parent){
         parentService.addParent(parent);
@@ -46,6 +52,9 @@ public class ChildController {
     public void submitChildResult(@RequestBody Child child){
 
         System.out.println("Child Name: "+child.getName());
+        Parent parent = parentService.getParentById(child.getParent().getId());
+        System.out.println("Parent Name: "+parent.getName());
+
     /*    System.out.println("Question 1: Title -> "+child.getQuestionList().get(0).getName());*/
         childService.submitChildResultFromApp(child);
 

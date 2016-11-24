@@ -1,6 +1,7 @@
 package com.agroho.domain;
 
 import com.agroho.domain.pogo.Address;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Parent extends BaseEntity {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "parent")
+    @JsonManagedReference
     private List<Child> children;
 
     private String phoneNumber;

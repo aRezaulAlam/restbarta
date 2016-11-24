@@ -29,8 +29,5 @@ public class ChildServiceImpl implements ChildService {
         return null;
     }
 
-    @Override
-    public List<Child> getAllChildResultByParentId(Parent parent) {
-        return null;
-    }
+
 }

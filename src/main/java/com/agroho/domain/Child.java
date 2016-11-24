@@ -1,5 +1,7 @@
 package com.agroho.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +23,7 @@ public class Child extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "PARENT_ID")
+    @JsonBackReference
     private Parent parent;
     private boolean appResult;
     private String doctorNote;
