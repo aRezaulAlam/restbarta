@@ -30,6 +30,7 @@ public class ChildController {
     @Autowired
     QuestionServices questionServices;
 
+    @CrossOrigin
     @RequestMapping(value = "/api/parent/{parentId}", method = RequestMethod.GET)
     List<Child> getChildResultByParentId(@PathVariable("parentId") Long parentId){
 
@@ -37,17 +38,20 @@ public class ChildController {
 
     }
 
+    @CrossOrigin
     @RequestMapping(value="/api/parent", method = RequestMethod.POST)
     public void addParent(@RequestBody Parent parent){
         parentService.addParent(parent);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/api/autismcenter", method = RequestMethod.POST)
     public void addAutismCenter(AutismCenter autismCenter){
         autismCenterService.addAutismCenter(autismCenter);
     }
 
 
+    @CrossOrigin
     @RequestMapping(value = "/api/child/submit", method = RequestMethod.POST)
     public void submitChildResult(@RequestBody Child child){
 
@@ -74,7 +78,7 @@ public class ChildController {
     }
 
 
-
+    @CrossOrigin
     @RequestMapping(value = "/api/child/status", method = RequestMethod.GET)
     public String getChildStatus(){
         return "Hello, all child are ready!";
